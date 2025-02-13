@@ -4,6 +4,54 @@ let canJump = false;
 let velocity = new THREE.Vector3();
 let direction = new THREE.Vector3();
 
+// Add this to your variable declarations
+let bullets = [];
+const bulletSpeed = 1000;
+const bulletLifetime = 2; // seconds
+
+// Add this function to create bullets
+function shoot() {
+    const bullet = new THREE.Mesh(
+        new THREE.SphereGeometry(0.1, 8, 8),
+        new THREE.MeshBasicMaterial({ color: 0xff0000 })
+    );
+    bullet.position.copy(controls.getObject().position);
+    bullet.quaternion.copy(controls.getObject().quaternion);
+    bullet.userData = { startTime: performance.now() };
+    bullets.push(bullet);
+    scene.add(bullet);
+}
+
+// Add this event listener to detect shooting
+document.addEventListener('click', function () {
+    if (controls.isLocked === true) {
+        shoot();
+    }
+});
+
+// Update bullets in the animate function
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (controls.isLocked === true) {
+        const time = performance.now();
+        const delta = (time - prevTime) / 1000;
+
+        // Update bullet positions
+        bullets.forEach((bullet, index) => {
+            bullet.translateZ(-bulletSpeed * delta);
+            if ((time - bullet.userData.startTime) / 1000 > bulletLifetime) {
+                scene.remove(bullet);
+                bullets.splice(index, 1);
+            }
+        });
+
+        // existing movement and rendering code
+    }
+
+    renderer.render(scene, camera);
+}
+
 init();
 animate();
 
