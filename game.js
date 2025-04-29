@@ -75,19 +75,32 @@ function init() {
     controls = new THREE.PointerLockControls(camera, document.body);
     scene.add(controls.getObject());
 
+    // Add click event listener
     instructions.addEventListener('click', function () {
+        console.log("Instructions clicked!");
         controls.lock();
     });
 
+    // Add lock/unlock event listeners
     controls.addEventListener('lock', function () {
+        console.log("Pointer locked");
         instructions.style.display = 'none';
         blocker.style.display = 'none';
     });
 
     controls.addEventListener('unlock', function () {
+        console.log("Pointer unlocked");
         blocker.style.display = 'block';
         instructions.style.display = '';
     });
+
+    // Add pointer lock error listener
+    document.addEventListener('pointerlockerror', function () {
+        console.error("Pointer lock error. Make sure your browser supports pointer lock.");
+    });
+
+    // ... rest of the init code (e.g., floor, renderer, etc.) ...
+}
 
     const onKeyDown = function (event) {
         switch (event.code) {
