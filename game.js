@@ -1,3 +1,4 @@
+alert("line #1");
 let camera, scene, renderer, controls;
 let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false;
 let canJump = false;
