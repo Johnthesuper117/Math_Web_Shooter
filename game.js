@@ -99,9 +99,6 @@ function init() {
         console.error("Pointer lock error. Make sure your browser supports pointer lock.");
     });
 
-    // ... rest of the init code (e.g., floor, renderer, etc.) ...
-}
-
     const onKeyDown = function (event) {
         switch (event.code) {
             case 'ArrowUp':
