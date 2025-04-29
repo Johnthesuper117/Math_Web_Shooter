@@ -34,6 +34,7 @@ function animate() {
     requestAnimationFrame(animate);
 
     if (controls.isLocked === true) {
+        alert("Game loop running with pointer locked.");
         const time = performance.now();
         const delta = (time - prevTime) / 1000;
 
@@ -47,6 +48,8 @@ function animate() {
         });
 
         // existing movement and rendering code
+    } else {
+        alert("Pointer not locked. Waiting for 'Click to play'.");
     }
 
     renderer.render(scene, camera);
@@ -77,26 +80,24 @@ function init() {
 
     // Add click event listener
     instructions.addEventListener('click', function () {
-        console.log("Instructions clicked!");
+        alert("Instructions clicked! Attempting to lock pointer...");
         controls.lock();
     });
 
-    // Add lock/unlock event listeners
     controls.addEventListener('lock', function () {
-        console.log("Pointer locked");
+        alert("Pointer locked successfully.");
         instructions.style.display = 'none';
         blocker.style.display = 'none';
     });
 
     controls.addEventListener('unlock', function () {
-        console.log("Pointer unlocked");
+        alert("Pointer unlocked.");
         blocker.style.display = 'block';
         instructions.style.display = '';
     });
 
-    // Add pointer lock error listener
     document.addEventListener('pointerlockerror', function () {
-        console.error("Pointer lock error. Make sure your browser supports pointer lock.");
+        alert("Pointer lock failed! Ensure your browser supports pointer lock.");
     });
 
     const onKeyDown = function (event) {
