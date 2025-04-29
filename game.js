@@ -9,6 +9,8 @@ let bullets = [];
 const bulletSpeed = 1000;
 const bulletLifetime = 2; // seconds
 
+alert("const have been declared");
+
 // Add this function to create bullets
 function shoot() {
     const bullet = new THREE.Mesh(
@@ -28,6 +30,8 @@ document.addEventListener('click', function () {
         shoot();
     }
 });
+
+alert("shoot function now works");
 
 // Update bullets in the animate function
 function animate() {
