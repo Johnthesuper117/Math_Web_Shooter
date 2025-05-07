@@ -1,4 +1,4 @@
-alert("line #1");
+alert("Deployment #10");
 let camera, scene, renderer, controls;
 let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false;
 let canJump = false;
@@ -10,8 +10,6 @@ document.getElementById('instructions').style.display = 'flex'; // Ensure visibi
 let bullets = [];
 const bulletSpeed = 1000;
 const bulletLifetime = 2; // seconds
-
-alert("const have been declared");
 
 // Add this function to create bullets
 function shoot() {
