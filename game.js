@@ -4,6 +4,7 @@ let moveForward = false, moveBackward = false, moveLeft = false, moveRight = fal
 let canJump = false;
 let velocity = new THREE.Vector3();
 let direction = new THREE.Vector3();
+document.getElementById('instructions').style.display = 'flex'; // Ensure visibility on load
 
 // Add this to your variable declarations
 let bullets = [];
